@@ -90,11 +90,10 @@ def game_dict():
                 },
             ],
         },
-            
         "away": {
             "team_name": "Washington Wizards",
             "colors": ["Red", "White", "Navy Blue"],
-            "players": [   
+            "players": [
                 {
                     "name": "Bradley Beal",
                     "number": 3,
@@ -179,92 +178,101 @@ def game_dict():
                     "height_inches": 80,
                     "shoe_brand": "Jordan",
                 },
-            ]
-        }
+            ],
+        },
     }
 
 
 import ipdb
 import pprint
 
+
 # HELPER METHODS
 def get_all_players():
     pass
     # the python * operator does the same job as the spread operator in JS
     # create an array of all the players
-    return [*game_dict()['home']['players'], *game_dict()['away']['players']]
+    return [*game_dict()["home"]["players"], *game_dict()["away"]["players"]]
+
 
 def get_player(player_name):
     pass
     for player_obj in get_all_players():
-        if player_obj['name'] == player_name:
+        if player_obj["name"] == player_name:
             return player_obj
-        
+
     return None
+
 
 def get_team(team_name):
     pass
     for team in game_dict():
         pass
         current_team = game_dict()[team]
-        if current_team['team_name'] == team_name:
+        if current_team["team_name"] == team_name:
             pass
             return current_team
-    
+
     return None
-    
+
 
 # METHODS
+
 
 def num_points_per_game(player_name):
     if get_player(player_name) == None:
         return "Player Not Found"
-    
-    return get_player(player_name)['points_per_game']
-        
+
+    return get_player(player_name)["points_per_game"]
+
+
 def player_age(player_name):
     pass
     if get_player(player_name) == None:
         return "Player Not Found"
-    
-    return get_player(player_name)['age']
+
+    return get_player(player_name)["age"]
+
 
 def team_colors(team_name):
     pass
     if get_team(team_name) == None:
         return "Team Not Found"
-    
-    return get_team(team_name)['colors']
-    
+
+    return get_team(team_name)["colors"]
+
 
 def team_names():
     pass
     team_list = []
     for team in game_dict():
         pass
-        team_list.append(game_dict()[team]['team_name'])
-        
+        team_list.append(game_dict()[team]["team_name"])
+
     return team_list
+
 
 def player_numbers(team_name):
     pass
     if get_team(team_name) == None:
         return "Team Not Found"
-    
+
     player_numbers_list = []
-    team_players = get_team(team_name)['players']
+    team_players = get_team(team_name)["players"]
     for player in team_players:
         pass
-        player_numbers_list.append(player['number'])
-        
+        player_numbers_list.append(player["number"])
+
     return player_numbers_list
+
 
 def player_stats(player_name):
     pass
     if get_player(player_name) == None:
-        return 'Player Not Found'
-    
+        return "Player Not Found"
+
     return get_player(player_name)
+
 
 def average_rebounds_by_shoe_brand():
     pass
@@ -275,7 +283,7 @@ def average_rebounds_by_shoe_brand():
         pass
         for stat_key in player:
             pass
-            if stat_key == 'shoe_brand':
+            if stat_key == "shoe_brand":
                 pass
                 # check if the key is already inside my_dict
                 if player[stat_key] in my_dict.keys():
@@ -289,34 +297,37 @@ def average_rebounds_by_shoe_brand():
     for brand in my_dict:
         pass
         print(f"{brand}: {sum(my_dict[brand])}")
-    
+
     # ipdb.set_trace()
-                
+
 
 def most_career_points():
     pass
     all_players = get_all_players()
-    the_one = {'name': '', 'career_points': 0 }
+    the_one = {"name": "", "career_points": 0}
     # iterate through all the players and find the player with the most career points
     # then, add that players name and points to the_one dict
     # that playter becomes the player to beat, and the iteration continues
     for player in all_players:
         pass
-        if player['career_points'] > the_one['career_points']:
+        if player["career_points"] > the_one["career_points"]:
             pass
-            the_one['name'] = player['name']
-            the_one['career_points'] = player['career_points']
-            
-    print(f"{the_one['name']} has the most career points with {the_one['career_points']} points.")
+            the_one["name"] = player["name"]
+            the_one["career_points"] = player["career_points"]
+
+    print(
+        f"{the_one['name']} has the most career points with {the_one['career_points']} points."
+    )
+
 
 def matching_jersey_nums():
     pass
     # grab each team seperately
-    home_team = game_dict()['home']['players']
-    away_team = game_dict()['away']['players']
+    home_team = game_dict()["home"]["players"]
+    away_team = game_dict()["away"]["players"]
     # create a list of both teams jersey numbers
-    home_nums = [player['number'] for player in home_team]
-    away_nums = [player['number'] for player in away_team]
+    home_nums = [player["number"] for player in home_team]
+    away_nums = [player["number"] for player in away_team]
     # ipdb.set_trace()
     for idx, num in enumerate(home_nums):
         pass
@@ -325,17 +336,18 @@ def matching_jersey_nums():
             pass
             away_idx = away_nums.index(num)
             return f"{home_team[home_idx]['name']} has the same jersey number as {away_team[away_idx]['name']}"
-    
+
     return "No matches found."
-    
+
+
 def longest_player_name():
     pass
     all_players = get_all_players()
-    longest_name = ''
+    longest_name = ""
     for player in all_players:
         pass
-        if len(player['name']) > len(longest_name):
+        if len(player["name"]) > len(longest_name):
             pass
-            longest_name = player['name']
-    
+            longest_name = player["name"]
+
     return f"{longest_name} has the longest name at {len(longest_name) - 1} characters long!"
