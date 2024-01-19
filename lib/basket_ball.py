@@ -1,3 +1,5 @@
+
+
 def game_dict():
     return {
         "home": {
@@ -183,10 +185,6 @@ def game_dict():
     }
 
 
-import ipdb
-import pprint
-
-
 # HELPER METHODS
 def get_all_players():
     pass
@@ -275,30 +273,27 @@ def player_stats(player_name):
 
 
 def average_rebounds_by_shoe_brand():
-    pass
     all_players = get_all_players()
     my_dict = {}
-    # iterate through all the players and collect each shoe brand along with the number of rebounds for that player inside of the empty dictonary
+    # iterate through all the players and collect each shoe brand along with the number of rebounds for that player inside of the empty dictionary
     for player in all_players:
-        pass
         for stat_key in player:
-            pass
             if stat_key == "shoe_brand":
-                pass
-                # check if the key is already inside my_dict
                 if player[stat_key] in my_dict.keys():
-                    pass
-                    my_dict[player[stat_key]].append(player["rebounds_per_game"])
+                    my_dict[player[stat_key]].append(
+                        player["rebounds_per_game"])
                 else:
-                    pass
-                    # if not, include the key in the dict, create a new array and set this element as the first element in the array
                     my_dict[player[stat_key]] = [player["rebounds_per_game"]]
-    # iterate through my_dict and print the average rebounds for each show brand
+    # create a string variable to store the results
+    results = ""
+    # iterate through my_dict and calculate the average rebounds for each shoe brand
     for brand in my_dict:
-        pass
-        print(f"{brand}: {sum(my_dict[brand])}")
+        average_rebounds = sum(my_dict[brand]) / len(my_dict[brand])
+        average_rebounds = round(average_rebounds, 2)
+        # append the results to the string variable
+        results += f"{brand}: {average_rebounds}\n"
 
-    # ipdb.set_trace()
+    return results  # return the results instead of printing them
 
 
 def most_career_points():
@@ -316,7 +311,8 @@ def most_career_points():
             the_one["career_points"] = player["career_points"]
 
     print(
-        f"{the_one['name']} has the most career points with {the_one['career_points']} points."
+        f"{the_one['name']} has the most career points with {
+            the_one['career_points']} points."
     )
 
 
